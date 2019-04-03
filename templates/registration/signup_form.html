@@ -1,0 +1,33 @@
+{% extends 'classroom/home.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+
+    .bg-1{
+    color: black;
+    padding: 150px 20px;
+    }
+
+
+</style>
+
+
+  <div class="row ">
+    <div class="col-sm-4 bg-1 text-center">
+      <span class="glyphicon glyphicon-user logo"></span>
+    </div>
+    <div class="col-sm-8 text-left">
+        <h2>Sign up as a {{ user_type }}</h2>
+        <form method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ next }}">
+              {{ form|crispy }}
+              <button type="submit" class="btn btn-button">Sign up</button>
+          </form>
+    </div>
+  </div>
+
+{% endblock %}

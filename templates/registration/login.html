@@ -1,0 +1,46 @@
+{% extends 'classroom/home.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+
+    .bg-1{
+    color: black;
+    padding: 50px 20px;
+    }
+
+
+</style>
+
+
+
+
+  <div class="row ">
+    <div class="col-sm-6 bg-1 text-center">
+      <span class="glyphicon glyphicon-log-in logo"></span>
+    </div>
+    <div class="col-sm-6 text-left">
+
+        {% if form.errors %}
+        <div class="alert alert-danger alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong></strong> your password and username did not match, please try again.
+  </div>
+
+  {% endif %}
+
+        <h2>Log In</h2>
+                <form method="post" novalidate>
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ next }}">
+              {{ form.username|as_crispy_field }}
+              {{ form.password|as_crispy_field }}
+              <button type="submit" class="btn btn-button">Log In</button>
+          </form>
+    </div>
+  </div>
+
+
+{% endblock %}
